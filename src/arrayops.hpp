@@ -131,8 +131,6 @@ matmul(const Array2D<T>& a, const Array2D<T>& b, Array2D<T>& c) {
 }
 
 
-
-
 // multiplication of Array2D and scalar
 // addition of scalar and Array2D
 // addition of Array2D and scalar
