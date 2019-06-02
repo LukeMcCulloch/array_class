@@ -171,8 +171,6 @@ Array2D<T>::Array2D(){
     // cout << "initialize\n" << endl;
 
     memset(array, 0, nBytes);
-    // initialize();
-    // cout <<"done with init\n"<<endl;
 };
 
 

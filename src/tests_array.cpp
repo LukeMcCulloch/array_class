@@ -8,9 +8,9 @@
 // #include "etmxtrix.hpp"
 // #include "etops2.hpp"
 
-#include "tests_array.hpp"
-#include "array_template.hpp"
-#include "arrayops.hpp"
+#include "../include/tests_array.hpp"
+#include "../include/array_template.hpp"
+#include "../include/arrayops.hpp"
 
 using namespace std;
 
