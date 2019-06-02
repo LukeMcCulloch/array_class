@@ -42,15 +42,16 @@ EXECUTABLE = solver
 
 
 
-OBJECTS = tests_array.o
+OBJECTS = vector.o tests_array.o 
 
 
 
 
  
 
-$(BUILD_DIR)/solver: 	$(SRC_DIRS)/tests_array.o 
-	$(CXX) 	$(SRC_DIRS)/tests_array.cpp  -o $(BUILD_DIR)/solver 
+$(BUILD_DIR)/solver: 	$(SRC_DIRS)/tests_array.o \
+						$(SRC_DIRS)/vector.o
+	$(CXX) 	 $(SRC_DIRS)/tests_array.cpp  $(SRC_DIRS)/vector.cpp  -o $(BUILD_DIR)/solver 
 
 
 
@@ -93,7 +94,7 @@ $(BUILD_DIR)/solver: 	$(SRC_DIRS)/tests_array.o
 
 
 
-$(OBJECTS): tests_array.o
+$(OBJECTS): tests_array.o vector.o
 
 .PHONY: clean
 

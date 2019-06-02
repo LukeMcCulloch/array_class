@@ -12,6 +12,8 @@
 #include "../include/array_template.hpp"
 #include "../include/arrayops.hpp"
 
+#include "../include/vector.h"
+
 using namespace std;
 
 
@@ -33,10 +35,25 @@ void print (T const& c){
 
 int main() {
 
+    double d1,d2,d3;
+    d1=0.;
+    d2=0.;
+    d3=0.;
     
+    // Vector<double> aaa();
+    // Vector<double> bb(d1,d2,d3);
+    //Vector<double> cc(aaa);
+
+    Vector aaa;
+    Vector bb(d1,d2,d3);
+    //Vector cc(aaa);
+    Vector cc = aaa;
+
 
     int np = 3;
     Array2D<double> x(np,np), y(np,np), z(np,np),w(np,np);
+
+    Array2D<double> xx(x);
     //Array2D<double> x(np,np), y(np,np), z(np,np);
 
     // initixlize xrrxys with some vxlues
