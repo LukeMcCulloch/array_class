@@ -40,14 +40,15 @@ int main() {
     d2=0.;
     d3=0.;
     
-    // Vector<double> aaa();
-    // Vector<double> bb(d1,d2,d3);
+    Vector<double> aaa;
+    Vector<double> bb(d1,d2,d3);
     //Vector<double> cc(aaa);
+    Vector<double> cc = aaa;
 
-    Vector aaa;
-    Vector bb(d1,d2,d3);
-    //Vector cc(aaa);
-    Vector cc = aaa;
+    // Vector aaa;
+    // Vector bb(d1,d2,d3);
+    // //Vector cc(aaa);
+    // Vector cc = aaa;
 
 
     int np = 3;
