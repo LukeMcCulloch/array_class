@@ -53,9 +53,54 @@ int main() {
 
     int np = 3;
     Array2D<double> x(np,np), y(np,np), z(np,np),w(np,np);
+    Array2D<double> xtester(np,np);
 
     Array2D<double> xx(x);
     //Array2D<double> x(np,np), y(np,np), z(np,np);
+
+    
+    
+    struct cell_data{
+        float xc;  // Cell-center coordinate
+        Array2D<float>* u;    // Conservative variables = [rho, rho*u, rho*E]
+        Array2D<float>* u0;   // Conservative variables at the previous time step
+        Array2D<float>* ww;    // Primitive variables = [rho, u, p]
+        Array2D<float>* dw;   // Slope (difference) of primitive variables
+        Array2D<float>* res;  // Residual = f_{j+1/2) - f_{j-1/2)
+
+        cell_data(){
+            u = new Array2D<float>(3,1);
+            u0 = new Array2D<float>(3,1);
+            ww = new Array2D<float>(3,1);
+            dw = new Array2D<float>(3,1);
+            res = new Array2D<float>(3,1);
+        }
+    };
+
+    cell_data* cell = new cell_data[3]; 
+    cell[0].u[0] = 1.1;    // Conservative variables = [rho, rho*u, rho*E]
+    float tme;
+    tme = cell[0].u->array[0];
+    tme = cell[0].u->array[0,0];
+    //tme = cell[0].u[0,0];
+
+    xtester(0,0) = 1.6;
+    float gme = xtester(0,0);
+    printf("\ngme = %f\n",gme);
+
+    // cell.u0;   // Conservative variables at the previous time step
+    // cell.ww;    // Primitive variables = [rho, u, p]
+    // cell.dw;   // Slope (difference) of primitive variables
+    // cell.res;  // Residual = f_{j+1/2) - f_{j-1/2)
+    
+    // struct cell_data{
+    //     float xc;  // Cell-center coordinate
+    //     Array2D u = new Array2D<float>(3,1);    // Conservative variables = [rho, rho*u, rho*E]
+    //     Array2D u0 = new Array2D<float>(3,1);   // Conservative variables at the previous time step
+    //     Array2D ww = new Array2D<float>(3,1);    // Primitive variables = [rho, u, p]
+    //     Array2D dw = new Array2D<float>(3,1);   // Slope (difference) of primitive variables
+    //     Array2D res = new Array2D<float>(3,1);  // Residual = f_{j+1/2) - f_{j-1/2)
+    // };
 
     // initixlize xrrxys with some vxlues
     for (int i=0; i<np; ++i) {
@@ -68,6 +113,15 @@ int main() {
     }
     //...
     
+    // u(0,0) = 1.;
+    // u(1,0) = 1.;
+    // u(2,0) = 1.;
+    // dw(0,0) = 1.;
+    // dw(1,0) = 1.;
+    // dw(2,0) = 1.;
+    // u(0,0) = dw(0,0) + 10.;
+    // u(0,0) = dw(0,0) - dw(2,0);
+
 
     std::cout << "y: ";
     print(y);
