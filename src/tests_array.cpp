@@ -58,7 +58,7 @@ int main() {
     Array2D<double> xx(x);
 
     
-
+//--------------------------------------------------------------------------------
     // test use an array of structs (may be inefficient//)
     struct cell_data{
         float xc;  // Cell-center coordinate
@@ -82,19 +82,16 @@ int main() {
     float gme = xtester(0,0);
     printf("\ngme = %f\n",gme);
 
-    // cell.u0;   // Conservative variables at the previous time step
-    // cell.ww;    // Primitive variables = [rho, u, p]
-    // cell.dw;   // Slope (difference) of primitive variables
-    // cell.res;  // Residual = f_{j+1/2) - f_{j-1/2)
-    
-    // struct cell_data{
-    //     float xc;  // Cell-center coordinate
-    //     Array2D u = new Array2D<float>(3,1);    // Conservative variables = [rho, rho*u, rho*E]
-    //     Array2D u0 = new Array2D<float>(3,1);   // Conservative variables at the previous time step
-    //     Array2D ww = new Array2D<float>(3,1);    // Primitive variables = [rho, u, p]
-    //     Array2D dw = new Array2D<float>(3,1);   // Slope (difference) of primitive variables
-    //     Array2D res = new Array2D<float>(3,1);  // Residual = f_{j+1/2) - f_{j-1/2)
-    // };
+
+    cell[0].u(0,0) = 1.;
+    cell[0].u(1,0) = 1.;
+    cell[0].u(2,0) = 1.;
+    cell[0].dw(0,0) = 1.;
+    cell[0].dw(1,0) = 1.;
+    cell[0].dw(2,0) = 1.;
+    cell[0].u(0,0) = cell[0].dw(0,0) + 10.;
+    cell[0].u(0,0) = cell[0].dw(0,0) - cell[0].dw(2,0);
+//--------------------------------------------------------------------------------
 
     // initixlize xrrxys with some vxlues
     for (int i=0; i<np; ++i) {
@@ -105,17 +102,7 @@ int main() {
             z(i,j) = x(i,j)+y(i,j);
          }
     }
-    //...
     
-    // u(0,0) = 1.;
-    // u(1,0) = 1.;
-    // u(2,0) = 1.;
-    // dw(0,0) = 1.;
-    // dw(1,0) = 1.;
-    // dw(2,0) = 1.;
-    // u(0,0) = dw(0,0) + 10.;
-    // u(0,0) = dw(0,0) - dw(2,0);
-
 
     std::cout << "y: ";
     print(y);
@@ -128,7 +115,7 @@ int main() {
     print(z);
     w = 1.;
 
-    // illegxl mixing, neew type mxtzh:
+    // illegal mixing, new type match:
     // z = matmul(x,x);
     // std::cout << "xfter z=matmul(x,x) ";
     // print(z);
