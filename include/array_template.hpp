@@ -181,6 +181,12 @@ void Array2D<T>::build(){
     storage_size = nrows*ncols;
     nBytes = storage_size * sizeof(T);
     array = new T[storage_size];
+
+    int i = 0;
+    for(i=0; i < storage_size; i++) {
+        array[i] = 0.;
+    }
+
 };
 
 
@@ -201,7 +207,6 @@ Array2D<T>::Array2D(const Array2D& other)
 
     array = new T[storage_size];
 
-    //printf("\narray copy constructor\n");
     int i = 0;
     for(i=0; i < storage_size; i++) {
         array[i] = other.array[i];
