@@ -56,33 +56,27 @@ int main() {
     Array2D<double> xtester(np,np);
 
     Array2D<double> xx(x);
-    //Array2D<double> x(np,np), y(np,np), z(np,np);
 
     
-    
+
+    // test use an array of structs (may be inefficient//)
     struct cell_data{
         float xc;  // Cell-center coordinate
-        Array2D<float>* u;    // Conservative variables = [rho, rho*u, rho*E]
-        Array2D<float>* u0;   // Conservative variables at the previous time step
-        Array2D<float>* ww;    // Primitive variables = [rho, u, p]
-        Array2D<float>* dw;   // Slope (difference) of primitive variables
-        Array2D<float>* res;  // Residual = f_{j+1/2) - f_{j-1/2)
+        Array2D<float> u  = Array2D<float>(3,1);  // Conservative variables = [rho, rho*u, rho*E]
+        Array2D<float> u0 = Array2D<float>(3,1);  // Conservative variables at the previous time step
+        Array2D<float> ww  = Array2D<float>(3,1);  // Primitive variables = [rho, u, p]
+        Array2D<float> dw = Array2D<float>(3,1);  // Slope (difference) of primitive variables
+        Array2D<float> res= Array2D<float>(3,1);  // Residual = f_{j+1/2) - f_{j-1/2)
 
-        cell_data(){
-            u = new Array2D<float>(3,1);
-            u0 = new Array2D<float>(3,1);
-            ww = new Array2D<float>(3,1);
-            dw = new Array2D<float>(3,1);
-            res = new Array2D<float>(3,1);
-        }
     };
 
+
     cell_data* cell = new cell_data[3]; 
-    cell[0].u[0] = 1.1;    // Conservative variables = [rho, rho*u, rho*E]
+    cell[0].u(0) = 1.1;    // Conservative variables = [rho, rho*u, rho*E]
     float tme;
-    tme = cell[0].u->array[0];
-    tme = cell[0].u->array[0,0];
-    //tme = cell[0].u[0,0];
+    tme = cell[0].u(0);
+    tme = cell[0].u(0,0);
+    tme = cell[0].u(0);
 
     xtester(0,0) = 1.6;
     float gme = xtester(0,0);
