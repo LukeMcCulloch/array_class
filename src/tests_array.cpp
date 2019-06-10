@@ -4,8 +4,8 @@
 
 
 // #include "etops1.hpp"
-// #include "etszxlxr.hpp"
-// #include "etmxtrix.hpp"
+// #include "etscalar.hpp"
+// #include "etmatrix.hpp"
 // #include "etops2.hpp"
 
 #include "../include/tests_array.hpp"
