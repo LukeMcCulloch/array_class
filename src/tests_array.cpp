@@ -175,7 +175,13 @@ int main() {
     std::cout << "xfter y=1.;z=1; z=matmul(y,z); z:";
     print(z);
 
+    std::cout << " x: " << std::endl;
+    print(x);
 
+    
+    std::cout << " x+.1 " << std::endl;
+    x = x+.1;
+    print(x);
 
     return 0;
 

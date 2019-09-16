@@ -46,20 +46,6 @@ operator-(const Array2D<T>& a, const Array2D<T>& b) {
 }
 
 
-
-// multiplication of scalar and Array2D
-template<typename T>
-Array2D<T> 
-operator*(T const& s, Array2D<T> const& a)
-{
-    Array2D<T> result(a.nrows,a.ncols);
-    for (size_t k = 0; k<a.size(); ++k) {
-        result.array[k] = s*a.array[k];
-    }
-    return result;
-}
-
-
 // multiplication of two Array2Ds
 template <class T>
 Array2D<T> 
@@ -75,6 +61,92 @@ operator*(const Array2D<T>& a, const Array2D<T>& b) {
     }
     return result;
 }
+
+
+
+/*
+Left Handed Overloading
+*/
+// addition of a scalar and Array2D
+template <class T>
+Array2D<T> 
+operator+( const Array2D<T>& a, T const& s) {
+
+    Array2D<T> result(a.nrows,a.ncols);
+
+    int size = a.storage_size;
+    for(size_t i=0; i < size; i++) {
+    	result.array[i] = s + a.array[i];
+    }
+    return result;
+}
+// subtraction of a scalar and Array2D
+template <class T>
+Array2D<T> 
+operator-(const Array2D<T>& a, T const& s) {
+
+    Array2D<T> result(a.nrows,a.ncols);
+
+    int size = a.storage_size;
+    for(size_t i=0; i < size; i++) {
+    	result.array[i] = a.array[i] - s;
+    }
+    return result;
+}
+// multiplication of scalar and Array2D
+template<typename T>
+Array2D<T> 
+operator*(Array2D<T> const& a, T const& s)
+{
+    Array2D<T> result(a.nrows,a.ncols);
+    for (size_t k = 0; k<a.size(); ++k) {
+        result.array[k] = a.array[k]*s;
+    }
+    return result;
+}
+
+
+/*
+Right Handed Overloading
+*/
+// addition of a scalar and Array2D
+template <class T>
+Array2D<T> 
+operator+(T const& s, const Array2D<T>& a) {
+
+    Array2D<T> result(a.nrows,a.ncols);
+
+    int size = a.storage_size;
+    for(size_t i=0; i < size; i++) {
+    	result.array[i] = s + a.array[i];
+    }
+    return result;
+}
+// subtraction of a scalar and Array2D
+template <class T>
+Array2D<T> 
+operator-(T const& s, const Array2D<T>& a) {
+
+    Array2D<T> result(a.nrows,a.ncols);
+
+    int size = a.storage_size;
+    for(size_t i=0; i < size; i++) {
+    	result.array[i] = s - a.array[i];
+    }
+    return result;
+}
+// multiplication of scalar and Array2D
+template<typename T>
+Array2D<T> 
+operator*(T const& s, Array2D<T> const& a)
+{
+    Array2D<T> result(a.nrows,a.ncols);
+    for (size_t k = 0; k<a.size(); ++k) {
+        result.array[k] = s*a.array[k];
+    }
+    return result;
+}
+
 
 
 
