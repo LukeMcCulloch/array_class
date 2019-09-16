@@ -177,10 +177,17 @@ int main() {
 
     std::cout << " x: " << std::endl;
     print(x);
-
-    
     std::cout << " x+.1 " << std::endl;
     x = x+.1;
+    print(x);
+    std::cout << " x-.1 " << std::endl;
+    x = x-.1;
+    print(x);
+    std::cout << " .1+x " << std::endl;
+    x = .1+x;
+    print(x);
+    std::cout << " .1-x " << std::endl;
+    x = .1-x;
     print(x);
 
     return 0;
