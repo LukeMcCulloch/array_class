@@ -172,7 +172,7 @@ Array2D<T>::Array2D(){
     // cout << "initialize\n" << endl;
 
     //memset(array, 0, nBytes);
-};
+}
 
 
 
@@ -190,16 +190,16 @@ void Array2D<T>::build(){
         array[i] = 0.;
     }
 
-};
+}
 
 
 template <class T>
 void Array2D<T>::buildWithParameters(int numrows, int numcols){
     nrows = numrows;
     ncols = numcols;
-    printf("\n build with parameters \n");
+    cout << "build with parameters \n" << endl;
     build();
-};
+}
 
 
 // copy constructor:
@@ -216,7 +216,7 @@ Array2D<T>::Array2D(const Array2D& other)
     for(i=0; i < storage_size; i++) {
        array[i] = other.array[i];
     }
-};
+}
 
 
 

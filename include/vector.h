@@ -54,8 +54,8 @@ Vector<T>::Vector( void )
   y( 0. ),
   z( 0. )
 {
-    printf("\n1");
-};
+    std::cout << "\n1" << std::endl;
+}
 
 
 template <class T>
@@ -67,8 +67,8 @@ Vector<T>::Vector( T x0,
   y( y0 ),
   z( z0 )
 {
-    printf("\n2");
-};
+    std::cout <<  "\n2" << std::endl;
+}
 
 
 template <class T>
@@ -78,8 +78,8 @@ Vector<T>::Vector(const  Vector& v )
   y( v.y ),
   z( v.z )
 {
-    printf("\n3\n");
-};
+    std::cout << "\n3\n" << std::endl;
+}
 
 
 template<class T>
