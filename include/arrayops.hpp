@@ -20,7 +20,7 @@ operator+(const Array2D<T>& a, const Array2D<T>& b) {
 
     Array2D<T> result(a.nrows,a.ncols);
 
-    int size = a.storage_size;
+    size_t size = a.storage_size;
     for(size_t i=0; i < size; i++) {
     	result.array[i] = a.array[i] + b.array[i];
     }
@@ -38,7 +38,7 @@ operator-(const Array2D<T>& a, const Array2D<T>& b) {
 
     Array2D<T> result(a.nrows,a.ncols);
 
-    int size = a.storage_size;
+    size_t size = a.storage_size;
     for(size_t i=0; i < size; i++) {
     	result.array[i] = a.array[i] - b.array[i];
     }
@@ -55,7 +55,7 @@ operator*(const Array2D<T>& a, const Array2D<T>& b) {
 
     Array2D<T> result(a.nrows,a.ncols);
 
-    int size = a.storage_size;
+    size_t size = a.storage_size;
     for(size_t i=0; i < size; i++) {
     	result.array[i] = a.array[i] * b.array[i];
     }
@@ -74,7 +74,7 @@ operator+( const Array2D<T>& a, T const& s) {
 
     Array2D<T> result(a.nrows,a.ncols);
 
-    int size = a.storage_size;
+    size_t size = a.storage_size;
     for(size_t i=0; i < size; i++) {
     	result.array[i] = s + a.array[i];
     }
@@ -87,7 +87,7 @@ operator-(const Array2D<T>& a, T const& s) {
 
     Array2D<T> result(a.nrows,a.ncols);
 
-    int size = a.storage_size;
+    size_t size = a.storage_size;
     for(size_t i=0; i < size; i++) {
     	result.array[i] = a.array[i] - s;
     }
@@ -116,7 +116,7 @@ operator+(T const& s, const Array2D<T>& a) {
 
     Array2D<T> result(a.nrows,a.ncols);
 
-    int size = a.storage_size;
+    size_t size = a.storage_size;
     for(size_t i=0; i < size; i++) {
     	result.array[i] = s + a.array[i];
     }
@@ -129,7 +129,7 @@ operator-(T const& s, const Array2D<T>& a) {
 
     Array2D<T> result(a.nrows,a.ncols);
 
-    int size = a.storage_size;
+    size_t size = a.storage_size;
     for(size_t i=0; i < size; i++) {
     	result.array[i] = s - a.array[i];
     }
@@ -150,7 +150,7 @@ operator*(T const& s, Array2D<T> const& a)
 
 
 
-// matmul of two Array2D into a third
+// matmul of two Array2D size_to a third
 /**
     this matmul creates a new Array2D, c.
 */
@@ -187,7 +187,7 @@ matmul(const Array2D<T>& a, const Array2D<T>& b) {
 
 
 
-// matmul of two Array2D into a third
+// matmul of two Array2D size_to a third
 /**
     this matmul over-writes Array2D c
 */

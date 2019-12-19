@@ -78,9 +78,12 @@ int main() {
     tme = cell[0].u(0,0);
     tme = cell[0].u(0);
 
+    std::cout << "tme =" << tme << std::endl;
+
     xtester(0,0) = 1.6;
     float gme = xtester(0,0);
-    printf("\ngme = %f\n",gme);
+    //printf("\ngme = %f\n",gme);
+    std::cout << "\ngme = %f\n" << gme << std::endl;
 
 
     cell[0].u(0,0) = 1.;

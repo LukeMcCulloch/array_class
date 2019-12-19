@@ -47,12 +47,12 @@ class underdetermined : public std::domain_error{
 template <typename ArrayClass, typename Result>
 class bracket_proxy{
     public:
-        bracket_proxy(ArrayClass& A, int r): A(A), r(r){}
+        bracket_proxy(ArrayClass& A, size_t r): A(A), r(r){}
 
-        Result& operator[](int c){return A(r,c); }
+        Result& operator[](size_t c){return A(r,c); }
     private:
         ArrayClass& A;
-        int r;
+        size_t r;
 };
 
 
@@ -63,34 +63,34 @@ class bracket_proxy{
 template <class T>
 class Array2D{
 
-    void check_indices(int i, int j) const{
+    void check_indices(size_t i, size_t j) const{
         assert(i >= 0 && i < nrows);
         assert(j >= 0 && j < ncols);
     }
 
-    void check_size(int other_nrows,int other_ncols) const { 
+    void check_size(size_t other_nrows,size_t other_ncols) const { 
         assert(nrows == other_nrows);
         assert(ncols == other_ncols); 
     }
 
-    void check_index(int i) const { assert(i >= 0 && i < nrows); }
+    void check_index(size_t i) const { assert(i >= 0 && i < nrows); }
 
-    void check_size(int i) const { assert(i >= 0 && i < storage_size); }
+    void check_size(size_t i) const { assert(i >= 0 && i < storage_size); }
 
     private:
-        int nBytes;
+        size_t nBytes;
 
     public:
 
         // set up data size of matrix
-        int nrows, ncols;
-        int storage_size;
+        size_t nrows, ncols;
+        size_t storage_size;
 
         // malloc host memory
         T* array;
         
         // explicit constructor declaring size nrow,ncol:
-        explicit Array2D(int numrows, int numcols): 
+        explicit Array2D(size_t numrows, size_t numcols): 
                         nrows(numrows), ncols(numcols){
             //cout << "building \n" << endl;
             //buildWithParameters(numrows, numcols);
@@ -110,10 +110,10 @@ class Array2D{
 
         //methods:
         void build();
-        void buildWithParameters(int, int);
+        void buildWithParameters(size_t, size_t);
         //void initialize();
         void setonce( T data);
-        void print();
+        void prsize_t();
 
        
         void cache() const {}
@@ -138,11 +138,11 @@ class Array2D{
         }
         
         // Operators:
-        T& operator() (int row, int col);        // Subscript operators in pairs
-        const T&  operator() (int row, int col) const;  
+        T& operator() (size_t row, size_t col);        // Subscript operators in pairs
+        const T&  operator() (size_t row, size_t col) const;  
         
-        T& operator() (int i);        // Subscript operator
-        const T&  operator() (int i) const;  
+        T& operator() (size_t i);        // Subscript operator
+        const T&  operator() (size_t i) const;  
         
         
         Array2D operator = (const Array2D&);
@@ -152,7 +152,7 @@ class Array2D{
         // for linear algebra operations see: arrayops.hpp
         
         // array[][] access:
-        bracket_proxy<Array2D, T> operator[](int r){
+        bracket_proxy<Array2D, T> operator[](size_t r){
             return bracket_proxy<Array2D, T>(*this, r);
         }
 };
@@ -183,9 +183,9 @@ void Array2D<T>::build(){
     storage_size = nrows*ncols;
     nBytes = storage_size * sizeof(T);
     array = new T[storage_size];
-    //printf("\n build  \n");
+    //print("\n build  \n");
 
-    int i = 0;
+    size_t i = 0;
     for(i=0; i < storage_size; i++) {
         array[i] = 0.;
     }
@@ -194,7 +194,7 @@ void Array2D<T>::build(){
 
 
 template <class T>
-void Array2D<T>::buildWithParameters(int numrows, int numcols){
+void Array2D<T>::buildWithParameters(size_t numrows, size_t numcols){
     nrows = numrows;
     ncols = numcols;
     cout << "build with parameters \n" << endl;
@@ -211,8 +211,8 @@ Array2D<T>::Array2D(const Array2D& other)
 
     array = new T[storage_size];
 
-    //printf("\narray copy constructor\n");
-    int i = 0;
+    //print("\narray copy constructor\n");
+    size_t i = 0;
     for(i=0; i < storage_size; i++) {
        array[i] = other.array[i];
     }
@@ -221,24 +221,24 @@ Array2D<T>::Array2D(const Array2D& other)
 
 
 template <class T>
-T& Array2D<T>::operator()(int i, int j) {
+T& Array2D<T>::operator()(size_t i, size_t j) {
 	check_indices(i,j);
     return array[i*ncols + j];
 }
 template <class T>
-const T& Array2D<T>::operator()(int i, int j) const {
+const T& Array2D<T>::operator()(size_t i, size_t j) const {
 	check_indices(i,j);
     return array[i*ncols + j];
 }
 
 
 template <class T>
-T& Array2D<T>::operator()(int i) {
+T& Array2D<T>::operator()(size_t i) {
 	check_size(i);
     return array[i];
 }
 template <class T>
-const T& Array2D<T>::operator()(int i) const {
+const T& Array2D<T>::operator()(size_t i) const {
 	check_size(i);
     return array[i];
 }
@@ -251,7 +251,7 @@ Array2D<T> Array2D<T>::operator=(const Array2D& that) {
 	assert(that.nrows == nrows);
 	assert(that.ncols == ncols);
 
-    int i;
+    size_t i;
     for(i=0; i < storage_size; i++) {
     	array[i] = that.array[i];
     }
@@ -259,7 +259,7 @@ Array2D<T> Array2D<T>::operator=(const Array2D& that) {
 }
 template <class T>
 Array2D<T> Array2D<T>::operator=(const T a) {
-    int i;
+    size_t i;
     for(i=0; i < storage_size; i++) {
     	array[i] = a;
     }
@@ -273,8 +273,8 @@ Array2D<T> Array2D<T>::operator=(const T a) {
 /**/  //TODO, use this: 
 template <class T>
 void Array2D<T>::setonce(T data){
-    int i = 0;
-    int j = 0;
+    size_t i = 0;
+    size_t j = 0;
 
     for(i=0; i<nrows; i++){
         for(j=0; j<ncols; j++) {
@@ -290,9 +290,9 @@ void Array2D<T>::setonce(T data){
 
 
 template <class T>
-void Array2D<T>::print(){
-    int i,j;
-    int oldp = cout.precision(numeric_limits<T>::digits10 + 1);
+void Array2D<T>::prsize_t(){
+    size_t i,j;
+    size_t oldp = cout.precision(numeric_limits<T>::digits10 + 1);
     for( i=0; i<nrows; i++) {
         for(j=0; j<ncols; j++) {
             cout << i << " " << j << " " << &array[i*ncols + j] << endl;
