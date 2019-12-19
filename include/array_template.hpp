@@ -89,16 +89,21 @@ class Array2D{
         // malloc host memory
         T* array;
         
+        // // explicit constructor declaring size nrow,ncol:
+        // explicit Array2D(size_t numrows, size_t numcols): 
+        //                 nrows(numrows), ncols(numcols){
+        //     //cout << "building \n" << endl;
+        //     //buildWithParameters(numrows, numcols);
+        //     build();
+        //     //cout << "built \n" << endl;
+        //     //initialize();
+        //     //cout << "initialized \n" << endl;
+        // }
+
+
         // explicit constructor declaring size nrow,ncol:
-        explicit Array2D(size_t numrows, size_t numcols): 
-                        nrows(numrows), ncols(numcols){
-            //cout << "building \n" << endl;
-            //buildWithParameters(numrows, numcols);
-            build();
-            //cout << "built \n" << endl;
-            //initialize();
-            //cout << "initialized \n" << endl;
-        }
+        Array2D(size_t numrows, size_t numcols);
+          
             
         Array2D();
         
@@ -174,6 +179,13 @@ Array2D<T>::Array2D(){
     //memset(array, 0, nBytes);
 }
 
+template <class T>
+Array2D<T>::Array2D(size_t numrows, size_t numcols) {
+    nrows = numrows;
+    ncols = numcols;
+    build();
+}
+    
 
 
 

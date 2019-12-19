@@ -67,8 +67,10 @@ int main() {
         Array2D<float>  ww = Array2D<float>(3,1);  // Primitive variables = [rho, u, p]
         Array2D<float>  dw = Array2D<float>(3,1);  // Slope (difference) of primitive variables
         Array2D<float> res = Array2D<float>(3,1);  // Residual = f_{j+1/2) - f_{j-1/2)
-
     };
+    
+
+    
 
 
     cell_data* cell = new cell_data[3]; 

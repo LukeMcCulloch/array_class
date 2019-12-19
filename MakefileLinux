@@ -33,8 +33,8 @@ ArrayCpp_OPENGL_LIBS       = -lGL -lGLU -lglut -lGLEW #-lX11
 TARGET = run/ArrayCpp
 CC = g++
 LD = g++
-CFLAGS = -O3 -Wall -Werror -ansi -pedantic  $(ArrayCpp_INCLUDE_PATH) 
-LFLAGS = -O3  -Wall -Werror -ansi -pedantic $(ArrayCpp_LIBRARY_PATH)
+CFLAGS = -O3 -Wall -std=c++17  $(ArrayCpp_INCLUDE_PATH) # -Werror #-ansi # -pedantic 
+LFLAGS = -O3  -Wall  -Werror -ansi -pedantic $(ArrayCpp_LIBRARY_PATH)
 LIBS = $(ArrayCpp_OPENGL_LIBS) $(ArrayCpp_SUITESPARSE_LIBS) $(ArrayCpp_BLAS_LIBS)
 
 ########################################################################################
@@ -50,7 +50,7 @@ $(TARGET): $(OBJECTS)
 	@echo "headers = " $(HEADERS)
 	@echo "sources = " $(SOURCES)
 	@echo "objects = " $(OBJECTS)
-	$(LD) $(OBJECTS) -o $(TARGET) $(CFLAGS) $(LFLAGS) $(LIBS) -std=gnu++11
+	$(LD) $(OBJECTS) -o $(TARGET) $(CFLAGS) $(LFLAGS) $(LIBS)
 
 obj/%.o: src/%.cpp ${HEADERS}
 	$(CC) -c $< -o $@ $(CFLAGS) 
