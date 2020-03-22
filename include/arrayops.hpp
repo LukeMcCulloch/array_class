@@ -342,9 +342,9 @@ GaussSeidelInv(const Array2D<T>& a,
     n = 0;
     Array2D<T> np1 = n;
 
-    int q = 100;
+    int q   = 100;
     T convg = 10.;
-    T tol = 1.0;
+    T tol   = 1.0;
 
     //cout << " GS interations: \n";
     //cout << " q = " << q << " convg = " << convg << " tol = " << tol << "\n";
