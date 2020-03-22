@@ -55,6 +55,10 @@ int main() {
     Array2D<double> x(np,np), y(np,np), z(np,np),w(np,np);
     Array2D<double> xtester(np,np);
 
+    Array2D<double> a(2,2);
+    Array2D<double> xo(2,1);
+    Array2D<double> b(2,1);
+
     Array2D<double> xx(x);
 
     
@@ -194,6 +198,18 @@ int main() {
     std::cout << " .1-x " << std::endl;
     x = .1-x;
     print(x);
+
+    a  = 0.0;
+    xo = 3.0;
+    b  = 3.0;
+    a(0,0) = 1.0;
+    a(1,1) = 1.0;
+    std::cout << "a = " << endl;
+    print(a);
+
+    Array2D<double> ans = GaussSeidelInv(a,xo,b);
+    std::cout << "ans = " << endl;
+    print(ans);
 
     return 0;
 

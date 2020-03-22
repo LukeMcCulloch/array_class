@@ -85,6 +85,7 @@ class Array2D{
         // set up data size of matrix
         size_t nrows, ncols;
         size_t storage_size;
+        int istat = 0;
 
         // malloc host memory
         T* array;
