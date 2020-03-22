@@ -213,7 +213,7 @@ int main() {
     std::cout << "x = inv(a)b = " << endl;
     print(ans);
 
-    if (ans.istat>=0) {
+    if (ans.istat==1) {
         cout << "Problem in solving the linear system//: Quadratic_LSJ_Matrix \n";
         std::exit(0);
     }

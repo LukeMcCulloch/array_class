@@ -340,14 +340,15 @@ GaussSeidelInv(const Array2D<T>& a,
 
     Array2D<T> n = m; // bad sizing.  The ans size = size(a)
     n = 0;
+    n.istat = 0;
     Array2D<T> np1 = n;
 
     int q   = 100;
     T convg = 10.;
-    T tol   = 1.0;
+    T tol   = 1.0e-8;
 
-    //cout << " GS interations: \n";
-    //cout << " q = " << q << " convg = " << convg << " tol = " << tol << "\n";
+    cout << " GS interations: \n";
+    cout << " q = " << q << " convg = " << convg << " tol = " << tol << "\n";
     while (q > 0 & convg > tol) {
         for (size_t i = 0; i < p; i++) {
             //np1 = m;
@@ -367,6 +368,7 @@ GaussSeidelInv(const Array2D<T>& a,
         //cout << "\n";
         convg = Dotscalar(n,np1);
         q--;
+        cout << " q = " << q << "\n";
     }
     if (q==0) n.istat = 1;
     return n;
