@@ -200,16 +200,35 @@ int main() {
     print(x);
 
     a  = 0.0;
-    xo = 3.0;
+    xo = 0.0;
     b  = 3.0;
     a(0,0) = 1.0;
     a(1,1) = 1.0;
     std::cout << "a = " << endl;
     print(a);
+    std::cout << "b = " << endl;
+    print(b);
 
     Array2D<double> ans = GaussSeidelInv(a,xo,b);
-    std::cout << "ans = " << endl;
+    std::cout << "x = inv(a)b = " << endl;
     print(ans);
+
+    if (ans.istat>=0) {
+        cout << "Problem in solving the linear system//: Quadratic_LSJ_Matrix \n";
+        std::exit(0);
+    }
+
+    
+    Array2D<double> ans1 = a.invert();
+    std::cout << "ans = " << endl;
+    print(ans1);
+
+    
+    a(0,0) = 1.0;
+    a(1,1) = 2.0;
+    Array2D<double> ans2 = a.invert();
+    std::cout << "ans = " << endl;
+    print(ans2);
 
     return 0;
 

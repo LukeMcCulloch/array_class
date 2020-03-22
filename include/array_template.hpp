@@ -108,6 +108,9 @@ class Array2D{
             
         Array2D();
         
+        //identity constructor 
+        Array2D(bool makeidentidy, size_t m, size_t n);
+        
         //copy constructor 
         Array2D(const Array2D& A);
 
@@ -120,6 +123,7 @@ class Array2D{
         //void initialize();
         void setonce( T data);
         void prsize_t();
+        Array2D<T>  invert();
 
        
         void cache() const {}
@@ -186,6 +190,23 @@ Array2D<T>::Array2D(size_t numrows, size_t numcols) {
     ncols = numcols;
     build();
 }
+
+//
+// initialize as an identity matrix
+template <class T>
+Array2D<T>::Array2D(bool makeidentidy, size_t m, size_t n){
+    nrows = m;
+    ncols = n;
+    build();
+    if (makeidentidy) {
+        assert(m == n);
+        for(size_t i = 0; i < nrows; i++) {
+            array[i*ncols + i] = 1.0;
+        }
+    }
+}
+
+
     
 
 
